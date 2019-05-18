@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'starter.controllers'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $ionicPopup) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs).
@@ -23,66 +23,71 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       // remove the status bar on iOS or change it to use white instead of dark colors.
       StatusBar.styleDefault();
     }
+
+    // Internet connection availability 
+    if(window.Connection) {
+      if(navigator.connection.type == Connection.NONE) {
+        $ionicPopup.confirm({
+          title: 'No Internet Connection',
+          content: 'Sorry, no Internet connectivity detected. Please reconnect and try again.'
+        })
+        .then(function(result) {
+          if(!result) {
+            ionic.Platform.exitApp();
+          }
+        });
+      }
+    }
   
   });
+
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+
+            // Geolocation Lat and long
             showPosition = function showPosition(position) {
             var lat = position.coords.latitude;
             var long = position.coords.longitude;
-            localStorage.setItem('lati', JSON.stringify(lat));
-            localStorage.setItem('longi', JSON.stringify(long));
+            localStorage.setItem('lat', JSON.stringify(lat));
+            localStorage.setItem('long', JSON.stringify(long));
             console.log(lat);
             console.log(long); 
            }
 
-
-         
-          
-        if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-        } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
+            if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+            x.innerHTML = "Geolocation is not supported by this browser.";
+            }
   
 
-  $stateProvider
- .state('addbook', {
-    url: '/addbook',
-    controller: 'AddBookCtrl',
-    templateUrl: 'pages/addbook.html',
-  })
+    $stateProvider
+    .state('addbook', {
+      url: '/addbook',
+      controller: 'AddBookCtrl',
+      templateUrl: 'pages/addbook.html',
+    })
 
-// .state('addbook', {
-//           url: '/addbook',
-//           views: {
-//               '': {
-//                   templateUrl: 'pages/addbook.html',
-//                   controller: 'AddBookCtrl',
-//               }
-//           }
-//     })
+    .state('booklist', {
+        url: '/booklist',
+        controller: 'BookListCtrl',
+        templateUrl: 'pages/booklist.html',
+      })
 
-.state('booklist', {
-    url: '/booklist',
-    controller: 'BookListCtrl',
-    templateUrl: 'pages/booklist.html',
-  })
-
-.state('adminlogin', {
-    url: '/adminlogin',
-    controller: 'AdminLoginCtrl',
-    templateUrl: 'pages/adminlogin.html',
-  })
+    .state('adminlogin', {
+        url: '/adminlogin',
+        controller: 'AdminLoginCtrl',
+        templateUrl: 'pages/adminlogin.html',
+      })
 
 
-.state('login', {
-    url: '/login',
-    controller: 'LoginCtrl',
-    templateUrl: 'pages/login.html',
-  });
+    .state('login', {
+        url: '/login',
+        controller: 'LoginCtrl',
+        templateUrl: 'pages/login.html',
+      });
 
-  $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/login');
 
 })
