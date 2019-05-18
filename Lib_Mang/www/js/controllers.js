@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-
+//login page controller 
 .controller('LoginCtrl', function($scope, $state) {
 
         $scope.data = {};
@@ -29,28 +29,32 @@ angular.module('starter.controllers', [])
 		console.log("admin")
 		$state.go('adminlogin')
 	}
-
-
 	     
 })
-
+  
 .controller('BookListCtrl', function($scope, $state) {
 
 	 $scope.book_display = JSON.parse(localStorage.getItem('book_list'));
-	 console.log($scope.book_display);
+	 
+	 
     $scope.bookDetails = function(id, index){
     $scope.book_display.splice(index, 1);
     localStorage.setItem('book_list', JSON.stringify($scope.book_display));
     }
+     
+     $scope.bookInfo = function(info){
+      localStorage.setItem('bookNameInfo', JSON.stringify(info));
+	  console.log(info);
+	  $state.go('bookdetails')
+	 }
 	
 })
 
-
+//
 .controller('BookDetailsCtrl', function($scope, $state) {
-
-	 $scope.book_display = JSON.parse(localStorage.getItem('book_list'));
-	 console.log($scope.book_display);
-	
+    
+	 $scope.book_display = JSON.parse(localStorage.getItem('bookNameInfo'));
+	 
 })
 
 
@@ -71,7 +75,8 @@ angular.module('starter.controllers', [])
                category:'',
               };
           $scope.addBooksForm = function(){
-         
+          
+          // localStorage.setItem('bookNameInfo', JSON.stringify($scope.data.bookName));
           var existingEntries = JSON.parse(localStorage.getItem("book_list"));
           if(existingEntries == null) existingEntries = [];
           existingEntries.push($scope.data);
@@ -84,12 +89,15 @@ angular.module('starter.controllers', [])
 		     alertPopup.then(function(res) {
 		     console.log('Thanks');
 		     });		       
-            $scope.IsVisible = true;
+            $scope.IsVisible = false;
+            
           };
 
           $scope.openBookList = function(){
           $state.go('booklist')
           }
+
+
 
 })
 

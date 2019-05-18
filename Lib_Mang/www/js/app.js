@@ -60,30 +60,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             } else { 
               x.innerHTML = "Geolocation is not supported by this browser.";
             }
-  
-
-    if(JSON.parse(localStorage.getItem('user_data'))==null && JSON.parse(localStorage.getItem('admin_data'))==null ){
+    
+        // Direct page Navigation 
+       if(JSON.parse(localStorage.getItem('user_data'))==null && JSON.parse(localStorage.getItem('admin_data'))==null ){
               $urlRouterProvider.when('','/login');            
-         } else if(JSON.parse(localStorage.getItem('user_data'))!=null){
-              $urlRouterProvider.when('','/booklist');  
-         } else{
-            $urlRouterProvider.when('','/addbook'); 
+             } else if(JSON.parse(localStorage.getItem('user_data'))!=null){
+                  $urlRouterProvider.when('','/booklist');  
+             } else{
+                $urlRouterProvider.when('','/addbook'); 
          }
 
 
     $stateProvider
+    .state('login', {    //Login page
+        url: '/login',
+        controller: 'LoginCtrl',
+        templateUrl: 'pages/login.html',
+      })
+    //Add books(By admin)
     .state('addbook', {
       url: '/addbook',
       controller: 'AddBookCtrl',
       templateUrl: 'pages/addbook.html',
     })
-
+    //User interface(Book list)
     .state('booklist', {
         url: '/booklist',
         controller: 'BookListCtrl',
         templateUrl: 'pages/booklist.html',
       })
-
+     //Book Info
     .state('bookdetails', {
         url: '/bookdetails',
         controller: 'BookDetailsCtrl',
@@ -94,13 +100,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         url: '/adminlogin',
         controller: 'AdminLoginCtrl',
         templateUrl: 'pages/adminlogin.html',
-      })
-
-
-    .state('login', {
-        url: '/login',
-        controller: 'LoginCtrl',
-        templateUrl: 'pages/login.html',
       });
 
     $urlRouterProvider.otherwise('/booklist');

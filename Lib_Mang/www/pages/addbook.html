@@ -1,70 +1,69 @@
 <ion-view  cache-view="false" title="Add Books">
-	<ion-nav-buttons side="right">
-    <button class="button button-icon button-clear ion-navicon" ng-click="openBookList()"></button>
-  </ion-nav-buttons> 
-  <ion-content class="padding">
- <div class="list">
+			<ion-nav-buttons side="right">
+		       <button class="button button-icon button-clear ion-navicon" ng-click="openBookList()"></button>
+		    </ion-nav-buttons> 
+           <ion-content class="padding">
+		   <div class="list">
+		   <div class="item item-button-right">
+		    Add your Book 
+		       <button class="button button-positive" ng-click="openForm()">
+		          <i class="icon ion-plus"></i>
+		       </button>
+		   </div> 
+		  </div>
 
-  <div class="item item-button-right">
-    Add your Book 
-    <button class="button button-positive" ng-click="openForm()">
-      <i class="icon ion-plus"></i>
-    </button>
-  </div> 
-</div>
+			<form ng-submit="addBooksForm()">
+			<div  ng-show="IsVisible">
+			  
 
-<form ng-submit="addBooksForm()">
-<div  ng-show="IsVisible">
-  
-
-  <label class="item item-input item-select">
-    <div class="input-label">
-     Category 
-    </div>
-    <select ng-model="data.category">
-     <option disabled="" selected="">Select a Category</option>
-      <option>Fiction</option>
-      <option>Literature</option>
-      <option>Music</option>
-      <option>Sci-Fi</option>
-      <option>Drama</option>
-      <option>Autobiography</option>
-    </select>
-  </label>
+			  <label class="item item-input item-select">
+			    <div class="input-label">
+			     Category 
+			    </div>
+			    <select ng-model="data.category" required="">
+			     <option disabled="" selected="">Select a Category</option>
+			      <option>Fiction</option>
+			      <option>Literature</option>
+			      <option>Music</option>
+			      <option>Sci-Fi</option>
+			      <option>Drama</option>
+			      <option>Autobiography</option>
+			    </select>
+			  </label>
 
 
-<div class="list">
-  <label class="item item-input item-floating-label">
-    <span class="input-label">Book Name</span>
-    <input type="text" placeholder="Book Name" ng-model="data.bookName">
-  </label>
-  <label class="item item-input item-floating-label">
-    <span class="input-label">ISBN Number</span>
-    <input type="text" placeholder="ISBN Number" ng-model="data.isbnNumber">
-  </label>
+			<div class="list">
+			  <label class="item item-input item-floating-label">
+			    <span class="input-label">Book Name</span>
+			    <input type="text" placeholder="Book Name" ng-model="data.bookName" required="">
+			  </label>
+			  <label class="item item-input item-floating-label">
+			    <span class="input-label">ISBN Number</span>
+			    <input type="text" placeholder="ISBN Number" ng-model="data.isbnNumber" required="">
+			  </label>
 
-  <label class="item item-input item-floating-label">
-    <span class="input-label">Author Name</span>
-    <input type="text" placeholder="Author Name" ng-model="data.authorName">
-  </label>
+			  <label class="item item-input item-floating-label">
+			    <span class="input-label">Author Name</span>
+			    <input type="text" placeholder="Author Name" ng-model="data.authorName" required="">
+			  </label>
 
-  <label class="item item-input item-stacked-label">
-    <span class="input-label">Date of Release</span>
-    <input type="date" placeholder="Date of Release" ng-model="data.releaseDate">
-  </label>
+			  <label class="item item-input item-stacked-label">
+			    <span class="input-label">Date of Release</span>
+			    <input type="date" placeholder="Date of Release" ng-model="data.releaseDate">
+			  </label>
 
-  <label class="item item-input item-stacked-label">
-    <span class="input-label">Added Date</span>
-    <input type="date" placeholder="Added Date" ng-model="data.addedDate">
-  </label>
+			  <label class="item item-input item-stacked-label">
+			    <span class="input-label">Added Date</span>
+			    <input type="date" placeholder="Added Date" ng-model="data.addedDate" required="">
+			  </label>
 
- 
-   <button class="button button-block button-positive" type="submit" >
-        Add Book</button>
+			 
+			   <button class="button button-block button-positive" type="submit" >
+			        Add Book</button>
 
-</div>
-</div>
+			</div>
+			</div>
 
-</form>
+			</form>
  </ion-content>
 </ion-view>  
