@@ -1,4 +1,6 @@
 angular.module('starter.controllers', [])
+
+
 //login page controller 
 .controller('LoginCtrl', function($scope, $state) {
 
@@ -35,8 +37,7 @@ angular.module('starter.controllers', [])
 .controller('BookListCtrl', function($scope, $state) {
 
 	 $scope.book_display = JSON.parse(localStorage.getItem('book_list'));
-	 
-	 
+	 	 
     $scope.bookDetails = function(id, index){
     $scope.book_display.splice(index, 1);
     localStorage.setItem('book_list', JSON.stringify($scope.book_display));
@@ -50,7 +51,7 @@ angular.module('starter.controllers', [])
 	
 })
 
-//
+//Individual book details info
 .controller('BookDetailsCtrl', function($scope, $state) {
     
 	 $scope.book_display = JSON.parse(localStorage.getItem('bookNameInfo'));
@@ -63,8 +64,6 @@ angular.module('starter.controllers', [])
         $scope.openForm = function(){
             $scope.IsVisible = $scope.IsVisible = true;
         }
-
-       
         // var book_info = new Array();
            $scope.data  = {
                bookName:'',
@@ -75,8 +74,7 @@ angular.module('starter.controllers', [])
                category:'',
               };
           $scope.addBooksForm = function(){
-          
-          // localStorage.setItem('bookNameInfo', JSON.stringify($scope.data.bookName));
+         
           var existingEntries = JSON.parse(localStorage.getItem("book_list"));
           if(existingEntries == null) existingEntries = [];
           existingEntries.push($scope.data);
@@ -96,9 +94,6 @@ angular.module('starter.controllers', [])
           $scope.openBookList = function(){
           $state.go('booklist')
           }
-
-
-
 })
 
 
