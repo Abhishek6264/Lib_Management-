@@ -1,0 +1,25 @@
+<ion-view  cache-view="false" title="Admin">
+  <!-- hide-nav-bar="true" -->
+  <ion-content class="padding">
+    <div style="margin-top: 10%"> 
+    
+  <form ng-submit="admin_login()" name="admin_form">
+    <div class="list" >
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Email</span>
+        <input type="email" name="email" placeholder="Email" ng-model="data.email" required="">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Passward</span>
+        <input type="text" name="passward" placeholder="Passward" ng-model="data.passward" required="">
+      </label>
+
+      <button class="button button-block button-positive" type="submit" ng-disabled="admin_form.email.$invalid || admin_form.passward.$invalid">
+        Login
+      </button> 
+    </div>
+  </form>  
+  
+
+ </ion-content>
+</ion-view>  
