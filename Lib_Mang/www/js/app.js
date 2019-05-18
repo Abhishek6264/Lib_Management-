@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform, $ionicPopup) {
   $ionicPlatform.ready(function() {
@@ -47,20 +47,29 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
             // Geolocation Lat and long
             showPosition = function showPosition(position) {
-            var lat = position.coords.latitude;
-            var long = position.coords.longitude;
-            localStorage.setItem('lat', JSON.stringify(lat));
-            localStorage.setItem('long', JSON.stringify(long));
-            console.log(lat);
-            console.log(long); 
-           }
+              var lat = position.coords.latitude;
+              var long = position.coords.longitude;
+              localStorage.setItem('lat', JSON.stringify(lat));
+              localStorage.setItem('long', JSON.stringify(long));
+              console.log(lat);
+              console.log(long); 
+            }
 
             if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+              navigator.geolocation.getCurrentPosition(showPosition);
             } else { 
-            x.innerHTML = "Geolocation is not supported by this browser.";
+              x.innerHTML = "Geolocation is not supported by this browser.";
             }
   
+
+    if(JSON.parse(localStorage.getItem('user_data'))==null && JSON.parse(localStorage.getItem('admin_data'))==null ){
+              $urlRouterProvider.when('','/login');            
+         } else if(JSON.parse(localStorage.getItem('user_data'))!=null){
+              $urlRouterProvider.when('','/booklist');  
+         } else{
+            $urlRouterProvider.when('','/addbook'); 
+         }
+
 
     $stateProvider
     .state('addbook', {
@@ -73,6 +82,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         url: '/booklist',
         controller: 'BookListCtrl',
         templateUrl: 'pages/booklist.html',
+      })
+
+    .state('bookdetails', {
+        url: '/bookdetails',
+        controller: 'BookDetailsCtrl',
+        templateUrl: 'pages/bookdetails.html',
       })
 
     .state('adminlogin', {
@@ -88,6 +103,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         templateUrl: 'pages/login.html',
       });
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/booklist');
 
 })
