@@ -28,7 +28,24 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+            showPosition = function showPosition(position) {
+            var lat = position.coords.latitude;
+            var long = position.coords.longitude;
+            localStorage.setItem('lati', JSON.stringify(lat));
+            localStorage.setItem('longi', JSON.stringify(long));
+            console.log(lat);
+            console.log(long); 
+           }
 
+
+         
+          
+        if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        } else { 
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  
 
   $stateProvider
  .state('addbook', {

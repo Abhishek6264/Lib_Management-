@@ -62,13 +62,15 @@ angular.module('starter.controllers', [])
             $scope.IsVisible = false;
           };
           $scope.openBookList = function(){
-          	
+
           }
 
 })
 
 
 .controller('AdminLoginCtrl', function($scope, $state) {
+
+
 	$scope.data  = {
                email:'',
                passward:'',
