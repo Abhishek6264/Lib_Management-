@@ -21,9 +21,10 @@
     <div class="input-label">
      Category 
     </div>
-    <select>
+    <select ng-model="data.category">
+     <option disabled="" selected="">Select a Category</option>
       <option>Fiction</option>
-      <option selected>Literature</option>
+      <option>Literature</option>
       <option>Music</option>
       <option>Sci-Fi</option>
       <option>Drama</option>
@@ -47,17 +48,19 @@
     <input type="text" placeholder="Author Name" ng-model="data.authorName">
   </label>
 
-  <label class="item item-input item-floating-label">
+  <label class="item item-input item-stacked-label">
     <span class="input-label">Date of Release</span>
-    <input type="text" placeholder="Date of Release" ng-model="data.releaseDate">
+    <input type="date" placeholder="Date of Release" ng-model="data.releaseDate">
   </label>
 
-  <label class="item item-input item-floating-label">
+  <label class="item item-input item-stacked-label">
     <span class="input-label">Added Date</span>
-    <input type="text" placeholder="Added Date" ng-model="data.addedDate">
+    <input type="date" placeholder="Added Date" ng-model="data.addedDate">
   </label>
+
+ 
    <button class="button button-block button-positive" type="submit" >
-        Login
+        Add Book</button>
 
 </div>
 </div>

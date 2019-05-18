@@ -1,26 +1,27 @@
 <ion-view  cache-view="false" title="Admin">
-  
-  <ion-content overflow-scroll="false">
- <div class="item item-input" >
+	<div class="item item-input" style="margin-top: 14%;">
     <i class="icon ion-search placeholder-icon"></i>
     <input type="search" placeholder="Search" id="myInput" ng-model="filterName">
   </div>
-<div class="card" ng-repeat="book in book_display | filter:filterName">
-  <div class="item item-divider">
-    {{book.bookName}}
+  <ion-content overflow-scroll="false">
+   
+  <div class="card" ng-repeat="book in book_display | filter:filterName" style="margin-top: 25%;margin-bottom: 0px">
+  <div class="item item-divider" style="text-align: center;">
+    {{book.bookName}}<button class="button-clear" style="float: right;padding: 0px" ng-click="bookDetails(book)"><i class="icon ion-trash-b  placeholder-icon"></i></button>
   </div>
-  <div class="item item-text-wrap">
-    
-    <div class="item item-thumbnail-left">
-      <i class="icon ion-home"></i>
-      <h2>{{book.isbnNumber}}</h2>
-      <p>{{book.releaseDate}}</p>
-      <p>{{book.addedDate}}</p>
+   <ion-list>
+      <ion-item class="item-remove-animate item-thumbnail-left item-text-wrap">
+        <img src="img/book.jpg">
+        <h2>Category:{{book.category}}</h2>
+      <h4>ISBN Number:{{book.isbnNumber}}</h4>
+      <p>Release Date:{{book.releaseDate | date}}</p>
+      <p>Added Date:{{book.addedDate | date}}</p>
 
-     </div>
+        
+      </ion-item>
+    </ion-list>
 
-  </div>
-  <div class="item item-divider">
+  <div class="item item-divider" >
     Author:{{book.authorName}}
   </div>
 </div>

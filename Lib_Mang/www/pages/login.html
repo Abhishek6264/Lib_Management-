@@ -10,22 +10,25 @@
         <input type="email" name="email" placeholder="Email" ng-model="data.email" required="">
       </label>
       <label class="item item-input item-floating-label">
-        <span class="input-label">Passward</span>
-        <input type="text" name="passward" placeholder="Passward" ng-model="data.passward" required="">
-      </label>
-
-      <button class="button button-block button-positive" type="submit" ng-disabled="login_form.email.$invalid || login_form.passward.$invalid">
+        <span class="input-label">Password</span>
+        <input type="password" name="password" placeholder="Passward" ng-model="data.password" required="">
+      </label><br/>
+      
+        <span>Login as Admin:</span>
+         <input type="checkbox" value="1" ng-model="data.checked" />
+      
+      <button class="button button-block button-positive" type="submit" ng-disabled="login_form.email.$invalid || login_form.password.$invalid">
         Login
       </button> 
     </div>
   </form>  
   
-      <div class="item item-button-right" style="border: none;">
+      <!-- <div class="item item-button-right" style="border: none;">
      Are you Admin? Click here
     <button class="button button-stable" ng-click="gotoadmin()">
       <i class="icon ion-person"></i>
     </button>
-  </div>
+  </div> -->
 
  </ion-content>
 </ion-view>  
